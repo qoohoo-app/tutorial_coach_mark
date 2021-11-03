@@ -47,8 +47,7 @@ class TutorialCoachMarkWidget extends StatefulWidget {
   TutorialCoachMarkWidgetState createState() => TutorialCoachMarkWidgetState();
 }
 
-class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
-    implements TutorialCoachMarkController {
+class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget> implements TutorialCoachMarkController {
   final GlobalKey<AnimatedFocusLightState> _focusLightKey = GlobalKey();
   bool showContent = false;
   TargetFocus? currentTarget;
@@ -119,9 +118,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
     double haloHeight;
 
     if (currentTarget!.shape == ShapeLightFocus.Circle) {
-      haloWidth = target.size.width > target.size.height
-          ? target.size.width
-          : target.size.height;
+      haloWidth = target.size.width > target.size.height ? target.size.width : target.size.height;
       haloHeight = haloWidth;
     } else {
       haloWidth = target.size.width;
@@ -151,8 +148,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
             weight = MediaQuery.of(context).size.width;
             left = 0;
             top = null;
-            bottom = haloHeight +
-                (MediaQuery.of(context).size.height - positioned.dy);
+            bottom = haloHeight + (MediaQuery.of(context).size.height - positioned.dy);
           }
           break;
         case ContentAlign.left:
@@ -187,12 +183,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
         left: left,
         child: Container(
           width: weight,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: i.builder != null
-                ? i.builder?.call(context, this)
-                : (i.child ?? SizedBox.shrink()),
-          ),
+          child: i.builder != null ? i.builder?.call(context, this) : (i.child ?? SizedBox.shrink()),
         ),
       );
     }).toList();
