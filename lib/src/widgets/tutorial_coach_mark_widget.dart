@@ -137,6 +137,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget> implem
     double? top;
     double? bottom;
     double? left;
+    double? right;
 
     children = currentTarget!.contents!.map<Widget>((i) {
       switch (i.align) {
@@ -175,6 +176,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget> implem
         case ContentAlign.custom:
           {
             left = i.customPosition!.left;
+            right = i.customPosition!.right;
             top = i.customPosition!.top;
             bottom = i.customPosition!.bottom;
             weight = MediaQuery.of(context).size.width;
@@ -186,6 +188,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget> implem
         top: top,
         bottom: bottom,
         left: left,
+        right: right,
         child: Container(
           width: weight,
           child: i.builder != null ? i.builder?.call(context, this) : (i.child ?? SizedBox.shrink()),
