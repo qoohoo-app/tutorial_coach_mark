@@ -15,6 +15,7 @@ class TutorialCoachMark {
   final BuildContext _context;
   final List<TargetFocus> targets;
   final FutureOr<void> Function(TargetFocus)? onClickTarget;
+  final FutureOr<void> Function(TargetFocus, TapDownDetails)? onClickTargetWithTapPosition;
   final FutureOr<void> Function(TargetFocus)? onClickOverlay;
   final Function()? onFinish;
   final double paddingFocus;
@@ -36,22 +37,23 @@ class TutorialCoachMark {
 
   TutorialCoachMark(this._context,
       {required this.targets,
-        this.colorShadow = Colors.black,
-        this.onClickTarget,
-        this.onClickOverlay,
-        this.onFinish,
-        this.paddingFocus = 10,
-        this.onSkip,
-        this.alignSkip = Alignment.bottomRight,
-        this.textSkip = "SKIP",
-        this.textStyleSkip = const TextStyle(color: Colors.white),
-        this.hideSkip = false,
-        this.opacityShadow = 0.8,
-        this.focusAnimationDuration = const Duration(milliseconds: 600),
-        this.unFocusAnimationDuration = const Duration(milliseconds: 600),
-        this.pulseAnimationDuration = const Duration(milliseconds: 500),
-        this.pulseEnable = true,
-        this.skipWidget})
+      this.colorShadow = Colors.black,
+      this.onClickTarget,
+      this.onClickTargetWithTapPosition,
+      this.onClickOverlay,
+      this.onFinish,
+      this.paddingFocus = 10,
+      this.onSkip,
+      this.alignSkip = Alignment.bottomRight,
+      this.textSkip = "SKIP",
+      this.textStyleSkip = const TextStyle(color: Colors.white),
+      this.hideSkip = false,
+      this.opacityShadow = 0.8,
+      this.focusAnimationDuration = const Duration(milliseconds: 600),
+      this.unFocusAnimationDuration = const Duration(milliseconds: 600),
+      this.pulseAnimationDuration = const Duration(milliseconds: 500),
+      this.pulseEnable = true,
+      this.skipWidget})
       : assert(opacityShadow >= 0 && opacityShadow <= 1);
 
   OverlayEntry _buildOverlay() {
@@ -61,6 +63,7 @@ class TutorialCoachMark {
           key: _widgetKey,
           targets: targets,
           clickTarget: onClickTarget,
+          onClickTargetWithTapPosition: onClickTargetWithTapPosition,
           clickOverlay: onClickOverlay,
           paddingFocus: paddingFocus,
           onClickSkip: skip,
